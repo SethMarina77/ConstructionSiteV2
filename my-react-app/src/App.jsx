@@ -1,15 +1,34 @@
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import "./App.css";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Home from "./pages/Home";
 
 
-import './App.css'
+const AppLayout = () => {
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <Outlet />
+      <Footer />
+    </div>
+  );
+};
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    children: [
+      { path: "/", element: <Home /> },
+      { path: "/about", element: <div>About</div> },
+      
+    ],
+  },
+]);
 
 function App() {
-  
-
-  return (
-    <>
-      <div className='bg-blue-500'>hello</div>
-    </>
-  )
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
