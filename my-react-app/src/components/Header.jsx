@@ -10,7 +10,7 @@ const Header = () => {
   });
 
   return (
-    <div className="pt-3 pb-3">
+    <div className="pt-3 pb-3 fixed top-0 left-0 right-0 z-50 bg-black">
       <ul
         onMouseLeave={() => setPosition({ ...position, opacity: 0 })}
         className="relative mx-auto flex w-fit rounded-full border-2 border-black bg-white p-1"
@@ -22,19 +22,19 @@ const Header = () => {
           <Tab setPosition={setPosition}>About</Tab>
         </NavLink>
         
-          <Tab setPosition={setPosition}>3</Tab>
+          <Tab setPosition={setPosition}>What we do</Tab>
         
 
         <Tab setPosition={setPosition}>
-          <p>4</p>
+          <p>WHy choose us</p>
         </Tab>
 
         <Tab setPosition={setPosition}>
-          <p>5</p>
+          <p>our mission</p>
         </Tab>
 
         <Tab setPosition={setPosition}>
-          <p>6</p>
+          <p>COntact us</p>
         </Tab>
         <Cursor position={position} />
       </ul>
