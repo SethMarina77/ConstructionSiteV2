@@ -3,6 +3,7 @@ import firstVideo from "../construction pictures/hScroll.mp4";
 import secondVideo from "../construction pictures/bScroll.mp4";
 import fourthVideo from "../construction pictures/cScroll.mp4";
 import thirdVideo from "../construction pictures/dScroll.mp4";
+import HomeMovingDisplay from "../components/HomeMovingDisplay";
 
 const Home = () => {
   const [currentVideo, setCurrentVideo] = useState(firstVideo);
@@ -28,8 +29,8 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="h-screen">
-      <section className="relative h-full">
+    <div>
+      <section className="relative h-screen">
         <video
           key={currentVideo}
           autoPlay
@@ -53,14 +54,17 @@ const Home = () => {
             <p className="text-center mt-4">
               <i>Building Dreams, One Home at a Time</i> At{" "}
               <i>Hernandez Construction</i>, we bring your vision to life with
-              expert craftsmanship and attention to detail.  Whether
-              you're building a brand-new home or upgrading your current space
-              with custom modifications and additions, our team ensures quality
-              and reliability every step of the way.  Let's create
-              something exceptional—together.
+              expert craftsmanship and attention to detail. Whether you're
+              building a brand-new home or upgrading your current space with
+              custom modifications and additions, our team ensures quality and
+              reliability every step of the way. Let's create something
+              exceptional—together.
             </p>
           </div>
         </div>
+      </section>
+      <section className="bg-black h-screen" id="whatweDo">
+        <HomeMovingDisplay />
       </section>
     </div>
   );

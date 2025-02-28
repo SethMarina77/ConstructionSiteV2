@@ -18,13 +18,16 @@ const Header = () => {
         <NavLink to="/">
           <Tab setPosition={setPosition}>Home</Tab>
         </NavLink>
-        <NavLink to="/about">
-          <Tab setPosition={setPosition}>About</Tab>
-        </NavLink>
-        
-          <Tab setPosition={setPosition}>What we do</Tab>
-        
 
+        <button
+          onClick={() => {
+            document.getElementById("whatweDo").scrollIntoView({
+              behavior: "smooth",
+            });
+          }}
+        >
+          <Tab setPosition={setPosition}>What we do</Tab>
+        </button>
         <Tab setPosition={setPosition}>
           <p>WHy choose us</p>
         </Tab>
@@ -32,6 +35,9 @@ const Header = () => {
         <Tab setPosition={setPosition}>
           <p>our mission</p>
         </Tab>
+        <NavLink to="/about">
+          <Tab setPosition={setPosition}>About</Tab>
+        </NavLink>
 
         <Tab setPosition={setPosition}>
           <p>COntact us</p>
