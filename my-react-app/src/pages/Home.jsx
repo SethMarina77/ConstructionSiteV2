@@ -4,13 +4,14 @@ import secondVideo from "../construction pictures/bScroll.mp4";
 import fourthVideo from "../construction pictures/cScroll.mp4";
 import thirdVideo from "../construction pictures/dScroll.mp4";
 import HomeMovingDisplay from "../components/HomeMovingDisplay";
+import Parallax from "../components/parallax";
 
 const Home = () => {
   const [currentVideo, setCurrentVideo] = useState(firstVideo);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
-    const videos = [firstVideo, secondVideo, thirdVideo,fourthVideo];
+    const videos = [firstVideo, secondVideo, thirdVideo, fourthVideo];
     let currentIndex = 0;
 
     const switchVideo = () => {
@@ -65,6 +66,9 @@ const Home = () => {
       </section>
       <section className="bg-black h-screen" id="whatweDo">
         <HomeMovingDisplay />
+      </section>
+      <section className="bg-black h-screen" id="whyChooseUs">
+        <Parallax />
       </section>
     </div>
   );

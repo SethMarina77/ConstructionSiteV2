@@ -28,9 +28,18 @@ const Header = () => {
         >
           <Tab setPosition={setPosition}>What we do</Tab>
         </button>
-        <Tab setPosition={setPosition}>
-          <p>WHy choose us</p>
-        </Tab>
+
+        <button
+          onClick={() => {
+            document.getElementById("whyChooseUs").scrollIntoView({
+              behavior: "smooth",
+            });
+          }}
+        >
+          <Tab setPosition={setPosition}>
+            <p>WHy choose us</p>
+          </Tab>
+        </button>
 
         <Tab setPosition={setPosition}>
           <p>our mission</p>
