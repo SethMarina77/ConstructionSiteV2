@@ -1,6 +1,7 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
   const [position, setPosition] = useState({
@@ -15,7 +16,15 @@ const Header = () => {
         onMouseLeave={() => setPosition({ ...position, opacity: 0 })}
         className="relative mx-auto flex w-fit rounded-full border-2 border-black bg-white p-1"
       >
-        <NavLink to="/">
+        <NavLink
+          to="/"
+          onClick={(e) => {
+            if (location.pathname === "/") {
+              e.preventDefault(); // Prevent reloading the page
+              window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to top smoothly
+            } //if the location is already at the home page it will scroll to the top of the page
+          }}
+        >
           <Tab setPosition={setPosition}>Home</Tab>
         </NavLink>
 

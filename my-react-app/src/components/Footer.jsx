@@ -25,7 +25,7 @@ const Footer = () => {
           <a
             href="#"
             onClick={(e) => {
-              e.preventDefault(); // Prevent default anchor behavior
+              e.preventDefault(); 
               window.scrollTo({ top: 0, behavior: "smooth" }); // Smoothly scroll to top
             }}
             className="text-white"
