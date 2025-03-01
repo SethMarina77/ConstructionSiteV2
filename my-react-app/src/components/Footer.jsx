@@ -4,7 +4,7 @@ import uparrow from "../construction pictures/uparrow.png";
 
 const Footer = () => {
   return (
-    <footer className="mt-auto w-full bg-gray-900">
+    <footer className="mt-auto w-full bg-zinc-950">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="py-16 flex justify-between items-center flex-col gap-8 lg:flex-row">
           <nav className="flex flex-wrap justify-center gap-6 text-white text-sm">

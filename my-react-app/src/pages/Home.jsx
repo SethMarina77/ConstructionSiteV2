@@ -67,7 +67,7 @@ const Home = () => {
       <section className="bg-black h-screen" id="whatweDo">
         <HomeMovingDisplay />
       </section>
-      <section className="bg-black h-[300vh]" id="whyChooseUs">
+      <section id="whyChooseUs">
         <Parallax />
       </section>
       <section className="bg-zinc-950 h-screen"></section>
