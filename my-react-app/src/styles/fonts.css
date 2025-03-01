@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Bebas+Neue&family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+
+.bebas-neue {
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+
+
+.volkhov {
+    font-family: 'Volkhov', serif;
+}

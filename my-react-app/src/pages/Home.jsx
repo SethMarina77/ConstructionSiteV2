@@ -49,10 +49,10 @@ const Home = () => {
         ></div>
         <div className="relative z-10 flex flex-col justify-center h-full text-white">
           <div className="bg-black/40 p-8 rounded-lg mx-auto max-w-3xl backdrop-blur-sm">
-            <h1 className="text-4xl font-bold text-center md:text-6xl">
+            <h1 className="text-4xl font-bold text-center md:text-6xl bebas-neue font-bebas">
               Welcome to Hernandez Construction
             </h1>
-            <p className="text-center mt-4">
+            <p className="text-center mt-4 volkhov font-volkhov">
               <i>Building Dreams, One Home at a Time</i> At{" "}
               <i>Hernandez Construction</i>, we bring your vision to life with
               expert craftsmanship and attention to detail. Whether you're
