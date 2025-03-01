@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import {motion, useInView, useAnimation} from "framer-motion";
 import backgroundImage from "../construction pictures/backgroundImage.jpg";
 
 
@@ -7,9 +6,6 @@ import backgroundImage from "../construction pictures/backgroundImage.jpg";
 const HomeMovingDisplay = () => {
   return (
     <div>
-      
-  
-
       <section
         className="relative bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${backgroundImage})` }}
@@ -32,13 +28,15 @@ const HomeMovingDisplay = () => {
 
             <div className="mt-8 flex flex-wrap gap-4 text-center">
               <a
-                href="#"
+                onClick={() => {
+                  document.getElementById("whyChooseUs").scrollIntoView({
+                    behavior: "smooth",
+                  });
+                }}
                 className="block w-full rounded-sm bg-black px-12 py-3 text-sm font-medium text-white shadow-sm hover:bg-gray-700 focus:ring-3 focus:outline-hidden sm:w-auto"
               >
                 Read More
               </a>
-
-              
             </div>
           </div>
         </div>
