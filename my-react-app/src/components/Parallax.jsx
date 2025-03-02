@@ -11,10 +11,25 @@ import {
   AnimatePresence,
 } from "framer-motion";
 
-const SECTION_HEIGHT = 200; // Compact section for faster animation
+const SECTION_HEIGHT = 200;
 
 const Parallax = () => {
   const containerRef = useRef(null);
+  const textBoxRef = useRef(null);
+
+  // Function to handle smooth scroll to text box
+  const scrollToTextBox = () => {
+    
+    const containerHeight = containerRef.current.offsetHeight;
+    const scrollPosition =
+      containerRef.current.offsetTop + containerHeight * 1;
+
+    // Smooth scroll to that position
+    window.scrollTo({
+      top: scrollPosition,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <div
@@ -25,11 +40,54 @@ const Parallax = () => {
         height: `${SECTION_HEIGHT}vh`,
       }}
     >
+      <ScrollDownButton onClick={scrollToTextBox} />
       <CenterImage containerRef={containerRef} />
       <AdditionalImages containerRef={containerRef} />
-      <FillerText containerRef={containerRef} />
+      <FillerText containerRef={containerRef} ref={textBoxRef} />
       <ParticleOverlay /> {/* Added particle effect */}
     </div>
+  );
+};
+
+// Pulsating Down Arrow Button Component
+const ScrollDownButton = ({ onClick }) => {
+  return (
+    <motion.button
+      onClick={onClick}
+      className="absolute top-16 left-1/2 transform -translate-x-1/2 z-40 bg-white/10 backdrop-blur-sm p-3 rounded-full border border-white/30 cursor-pointer"
+      whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.2)" }}
+      whileTap={{ scale: 0.95 }}
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.5 }}
+    >
+      <motion.div
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.7, 1, 0.7],
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          repeatType: "loop",
+        }}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="text-white"
+        >
+          <path d="M12 5v14M19 12l-7 7-7-7" />
+        </svg>
+      </motion.div>
+    </motion.button>
   );
 };
 
@@ -69,23 +127,24 @@ const CenterImage = ({ containerRef }) => {
     offset: ["start start", "end start"],
   });
 
-  
+  // Modified timing to make room for text visibility
   const opacity = useTransform(
     scrollYProgress,
-    [0, 0.15, 0.65, 0.75],
+    [0, 0.15, 0.55, 0.65],
     [0, 1, 1, 0]
   );
+
   const scale = useTransform(
     scrollYProgress,
-    [0, 0.3, 0.6, 0.75],
-    [1.8, 1, 0.7, 0.4]
+    [0, 0.3, 0.5, 0.65, 0.75],
+    [1.8, 1, 0.7, 0.4, 0.2]
   );
-  const rotate = useTransform(scrollYProgress, [0, 0.3], [-5, 0]); 
-  const y = useTransform(scrollYProgress, [0, 0.6, 0.8], [0, -30, 300]); 
 
- 
+  const rotate = useTransform(scrollYProgress, [0, 0.3], [-5, 0]);
+  const y = useTransform(scrollYProgress, [0, 0.5, 0.7], [0, -30, 300]);
+
   const perspective = "1000px";
-  const rotateX = useTransform(scrollYProgress, [0.4, 0.6], [0, -5]);
+  const rotateX = useTransform(scrollYProgress, [0.4, 0.7], [0, -5]);
 
   return (
     <motion.div
@@ -99,7 +158,7 @@ const CenterImage = ({ containerRef }) => {
           y,
           rotateZ: rotate,
           rotateX,
-          backgroundImage: `url("${warmBrown}")`,
+          backgroundImage: `url("${personBuilding}")`, // Main image
           backgroundPosition: "center",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
@@ -130,69 +189,84 @@ const AdditionalImages = ({ containerRef }) => {
     offset: ["start start", "end start"],
   });
 
-  // More energetic entrance and exit
+  
   const opacity = useTransform(
     scrollYProgress,
-    [0.3, 0.5, 0.75, 0.85],
+    [0.3, 0.4, 0.65, 0.75],
     [0, 1, 1, 0]
   );
 
-  // Staggered entrances with different directions and timings
+  // staggered entrances with different timings for 4 images
   const yImage1 = useTransform(
     scrollYProgress,
-    [0.3, 0.5, 0.75, 0.85],
+    [0.3, 0.4, 0.65, 0.75],
     [300, 0, 0, -300]
   );
   const yImage2 = useTransform(
     scrollYProgress,
-    [0.35, 0.55, 0.75, 0.85],
+    [0.33, 0.43, 0.65, 0.75],
     [300, 0, 0, -300]
   );
   const yImage3 = useTransform(
     scrollYProgress,
-    [0.4, 0.6, 0.75, 0.85],
+    [0.36, 0.46, 0.65, 0.75],
+    [300, 0, 0, -300]
+  );
+  const yImage4 = useTransform(
+    scrollYProgress,
+    [0.39, 0.49, 0.65, 0.75],
     [300, 0, 0, -300]
   );
 
-  // Add some rotation for more energy
+  // rotation animations
   const rotate1 = useTransform(
     scrollYProgress,
-    [0.3, 0.5, 0.75, 0.85],
+    [0.3, 0.4, 0.65, 0.75],
     [10, 0, 0, -5]
   );
   const rotate2 = useTransform(
     scrollYProgress,
-    [0.35, 0.55, 0.75, 0.85],
+    [0.33, 0.43, 0.65, 0.75],
     [-10, 0, 0, 5]
   );
   const rotate3 = useTransform(
     scrollYProgress,
-    [0.4, 0.6, 0.75, 0.85],
+    [0.36, 0.46, 0.65, 0.75],
     [15, 0, 0, -10]
   );
+  const rotate4 = useTransform(
+    scrollYProgress,
+    [0.39, 0.49, 0.65, 0.75],
+    [-15, 0, 0, 10]
+  );
 
-  // Scale animations for added punch
+  //scale animations
   const scale1 = useTransform(
     scrollYProgress,
-    [0.3, 0.4, 0.75, 0.85],
+    [0.3, 0.4, 0.65, 0.75],
     [0.5, 1, 1, 0.8]
   );
   const scale2 = useTransform(
     scrollYProgress,
-    [0.35, 0.45, 0.75, 0.85],
+    [0.33, 0.43, 0.65, 0.75],
     [0.5, 1, 1, 0.8]
   );
   const scale3 = useTransform(
     scrollYProgress,
-    [0.4, 0.5, 0.75, 0.85],
+    [0.36, 0.46, 0.65, 0.75],
+    [0.5, 1, 1, 0.8]
+  );
+  const scale4 = useTransform(
+    scrollYProgress,
+    [0.39, 0.49, 0.65, 0.75],
     [0.5, 1, 1, 0.8]
   );
 
   return (
     <div className="sticky top-0 w-full h-screen flex items-center justify-center">
-      {/* Right image */}
+      
       <motion.div
-        className="absolute w-72 h-72 top-1/4 md:right-10"
+        className="absolute w-64 h-64 top-24 md:right-24"
         style={{
           opacity,
           y: yImage1,
@@ -204,13 +278,12 @@ const AdditionalImages = ({ containerRef }) => {
         <div
           className="w-full h-full rounded-lg shadow-lg overflow-hidden"
           style={{
-            backgroundImage: `url("${tools1}")`,
+            backgroundImage: `url("${warmBrown}")`,
             backgroundPosition: "center",
             backgroundSize: "cover",
             boxShadow: "0 20px 30px -10px rgba(0, 0, 0, 0.7)",
           }}
         >
-          {/* Inner glow effect */}
           <motion.div
             className="absolute inset-0 border-2 border-white border-opacity-0"
             animate={{ borderOpacity: [0, 0.3, 0] }}
@@ -219,9 +292,9 @@ const AdditionalImages = ({ containerRef }) => {
         </div>
       </motion.div>
 
-      {/* Left image */}
+     
       <motion.div
-        className="absolute w-72 h-72 top-1/3 md:left-10"
+        className="absolute w-64 h-64 top-24 md:left-24"
         style={{
           opacity,
           y: yImage2,
@@ -239,7 +312,6 @@ const AdditionalImages = ({ containerRef }) => {
             boxShadow: "0 20px 30px -10px rgba(0, 0, 0, 0.7)",
           }}
         >
-          {/* Inner glow effect */}
           <motion.div
             className="absolute inset-0 border-2 border-white border-opacity-0"
             animate={{ borderOpacity: [0, 0.3, 0] }}
@@ -248,9 +320,9 @@ const AdditionalImages = ({ containerRef }) => {
         </div>
       </motion.div>
 
-      {/* Bottom image */}
+     
       <motion.div
-        className="absolute w-72 h-72 top-2/3 left-1/3"
+        className="absolute w-64 h-64 bottom-32 left-1/4"
         style={{
           opacity,
           y: yImage3,
@@ -260,15 +332,14 @@ const AdditionalImages = ({ containerRef }) => {
         }}
       >
         <div
-          className="w-full h-full rounded-lg shadow-lg overflow-hidden "
+          className="w-full h-full rounded-lg shadow-lg overflow-hidden"
           style={{
-            backgroundImage: `url("${interior}")`,
+            backgroundImage: `url("${tools1}")`,
             backgroundPosition: "center",
             backgroundSize: "cover",
             boxShadow: "0 20px 30px -10px rgba(0, 0, 0, 0.7)",
           }}
         >
-          {/* Inner glow effect */}
           <motion.div
             className="absolute inset-0 border-2 border-white border-opacity-0"
             animate={{ borderOpacity: [0, 0.3, 0] }}
@@ -276,34 +347,63 @@ const AdditionalImages = ({ containerRef }) => {
           />
         </div>
       </motion.div>
+
+     
+      <motion.div
+        className="absolute w-64 h-64 bottom-32 right-1/4"
+        style={{
+          opacity,
+          y: yImage4,
+          rotate: rotate4,
+          scale: scale4,
+          zIndex: 20,
+        }}
+      >
+        <div
+          className="w-full h-full rounded-lg shadow-lg overflow-hidden"
+          style={{
+            backgroundImage: `url("${interior}")`, 
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            boxShadow: "0 20px 30px -10px rgba(0, 0, 0, 0.7)",
+          }}
+        >
+          <motion.div
+            className="absolute inset-0 border-2 border-white border-opacity-0"
+            animate={{ borderOpacity: [0, 0.3, 0] }}
+            transition={{ duration: 2, repeat: Infinity, delay: 1.5 }}
+          />
+        </div>
+      </motion.div>
     </div>
   );
 };
 
-// Enhanced filler text with more dynamic entrance
-const FillerText = ({ containerRef }) => {
+
+const FillerText = React.forwardRef(({ containerRef }, ref) => {
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
   });
 
-  // Text appears with more dramatic timing
-  const opacity = useTransform(scrollYProgress, [0.7, 0.85, 0.95], [0, 1, 1]);
-  const y = useTransform(scrollYProgress, [0.7, 0.85], [100, 0]);
-  const scale = useTransform(scrollYProgress, [0.7, 0.85], [0.8, 1]);
+ 
+  const opacity = useTransform(scrollYProgress, [0.6, 0.75, 1.0], [0, 1, 1]);
+  const y = useTransform(scrollYProgress, [0.6, 0.75], [100, 0]);
+  const scale = useTransform(scrollYProgress, [0.6, 0.75], [0.8, 1]);
 
-  // Text elements fly in staggered
-  const titleY = useTransform(scrollYProgress, [0.7, 0.82], [50, 0]);
-  const descY = useTransform(scrollYProgress, [0.75, 0.87], [50, 0]);
-  const ctaY = useTransform(scrollYProgress, [0.8, 0.92], [50, 0]);
+  // Text elements fly in staggered 
+  const titleY = useTransform(scrollYProgress, [0.6, 0.7], [50, 0]);
+  const descY = useTransform(scrollYProgress, [0.65, 0.75], [50, 0]);
+  const ctaY = useTransform(scrollYProgress, [0.7, 0.8], [50, 0]);
 
   // Title opacity animation
-  const titleOpacity = useTransform(scrollYProgress, [0.7, 0.82], [0, 1]);
-  const descOpacity = useTransform(scrollYProgress, [0.75, 0.87], [0, 1]);
-  const ctaOpacity = useTransform(scrollYProgress, [0.8, 0.92], [0, 1]);
+  const titleOpacity = useTransform(scrollYProgress, [0.6, 0.7], [0, 1]);
+  const descOpacity = useTransform(scrollYProgress, [0.65, 0.75], [0, 1]);
+  const ctaOpacity = useTransform(scrollYProgress, [0.7, 0.8], [0, 1]);
 
   return (
     <motion.div
+      ref={ref}
       className="sticky top-0 w-full h-screen flex items-center justify-center z-30"
       style={{ opacity }}
     >
@@ -324,24 +424,33 @@ const FillerText = ({ containerRef }) => {
           className="text-4xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-4"
           style={{ y: titleY, opacity: titleOpacity }}
         >
-          Why Us?
+          Why Choose Us?
         </motion.h2>
 
         <motion.p
-          className="text-xl text-gray-200 mb-6"
+          className="text-xl text-gray-200 mb-6 pb-6"
           style={{ y: descY, opacity: descOpacity }}
         >
           Building your dream home or next big project is a huge
           investment—trust the experts who bring quality, reliability, and
           craftsmanship to every build. Our team is committed to delivering
           top-tier construction with precision and care, ensuring your vision
-          becomes a reality. ✅ Unmatched Quality – We use the best materials
-          and expert craftsmanship to create lasting structures. ✅ Reliability
-          You Can Count On – On-time, on-budget, and built to last. ✅ Tailored
-          to Your Needs – Every project is customized to fit your style, needs,
-          and goals. ✅ Commitment to Excellence – We take pride in our work,
-          guaranteeing satisfaction every step of the way. Let’s build something
-          amazing together. Contact us today to get started!
+          becomes a reality.
+          <br />
+          <br />✅ <span className="font-semibold">Unmatched Quality</span> – We
+          use the best materials and expert craftsmanship to create lasting
+          structures.
+          <br />✅{" "}
+          <span className="font-semibold">Reliability You Can Count On</span> –
+          On-time, on-budget, and built to last.
+          <br />✅ <span className="font-semibold">
+            Tailored to Your Needs
+          </span>{" "}
+          – Every project is customized to fit your style, needs, and goals.
+          <br />✅{" "}
+          <span className="font-semibold">Commitment to Excellence</span> – We
+          take pride in our work, guaranteeing satisfaction every step of the
+          way.
         </motion.p>
 
         <motion.div style={{ y: ctaY, opacity: ctaOpacity }}>
@@ -356,6 +465,6 @@ const FillerText = ({ containerRef }) => {
       </motion.div>
     </motion.div>
   );
-};
+});
 
 export default Parallax;
