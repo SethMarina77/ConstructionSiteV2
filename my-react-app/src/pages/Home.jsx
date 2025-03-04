@@ -66,12 +66,12 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="bg-black h-screen" id="whatweDo">
+      <section className="h-screen" id="whatweDo">
         <HomeMovingDisplay />
       </section>
       <section
         id="readMore"
-        className="h-screen bg-gradient-to-b from-zinc-950 to-black"
+        className="h-screen w-full bg-white"
       >
         <ReadMore />
         <Carousel />

@@ -2,7 +2,7 @@ import React from "react";
 
 const ReadMore = () => {
   return (
-    <div className="h-2/5 flex justify-center items-center bg-black px-6">
+    <div className="pt-50 flex justify-center items-center bg-white px-6">
       <div className="flex justify-center items-center gap-6 w-full max-w-5xl">
         
         <div className="bg-white text-black p-6 rounded-lg shadow-lg w-1/3 text-center">

@@ -11,7 +11,7 @@ const Header = () => {
   });
 
   return (
-    <div className="pt-3 pb-3 fixed top-0 left-0 right-0 z-50 bg-black ">
+    <div className="pt-3 pb-3 fixed top-0 left-0 right-0 z-50 bg-black  ">
       <ul
         onMouseLeave={() => setPosition({ ...position, opacity: 0 })}
         className="relative mx-auto flex w-fit rounded-full border-2 border-black bg-white p-1"
