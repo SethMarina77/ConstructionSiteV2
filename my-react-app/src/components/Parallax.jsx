@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { NavLink } from "react-router-dom";
 import personBuilding from "../construction pictures/building.jpg";
 import warmBrown from "../construction pictures/warmBrownInterior.jpg";
 import tools1 from "../construction pictures/tools1.jpg";
@@ -468,13 +469,15 @@ const FillerText = React.forwardRef(({ containerRef }, ref) => {
         </motion.div>
 
         <motion.div style={{ y: ctaY, opacity: ctaOpacity }}>
-          <motion.button
-            className="px-6 py-3 bg-white text-zinc-900 rounded-full font-semibold transition"
-            whileHover={{ scale: 1.05, backgroundColor: "#f8fafc" }}
-            whileTap={{ scale: 0.98 }}
-          >
-            Contact Us
-          </motion.button>
+          <NavLink to="/contact">
+            <motion.button
+              className="px-6 py-3 bg-white text-zinc-900 rounded-full font-semibold transition"
+              whileHover={{ scale: 1.05, backgroundColor: "#f8fafc" }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Contact Us
+            </motion.button>
+          </NavLink>
         </motion.div>
       </motion.div>
     </motion.div>

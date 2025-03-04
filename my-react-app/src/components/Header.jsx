@@ -64,10 +64,11 @@ const Header = () => {
         <NavLink to="/about">
           <Tab setPosition={setPosition}>About</Tab>
         </NavLink>
-
+<NavLink to="/contact">
         <Tab setPosition={setPosition}>
           <p>COntact us</p>
         </Tab>
+</NavLink>
         <Cursor position={position} />
       </ul>
     </div>
