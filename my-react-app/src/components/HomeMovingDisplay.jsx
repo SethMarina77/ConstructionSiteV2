@@ -14,18 +14,36 @@ const HomeMovingDisplay = () => {
 
         <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
           <div className="max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
-            <h1 className="text-3xl font-extrabold text-white sm:text-5xl">
+            <h1 className="text-3xl font-extrabold text-white sm:text-5xl mt-24">
               Let us build your
-              <strong className="block font-extrabold text-white">
+              <strong className="block font-extrabold text-white mb-6">
                 {" "}
                 Forever Home.{" "}
               </strong>
             </h1>
-
-            <p className="mt-4 max-w-lg text-white sm:text-xl/relaxed">
-              **summary type about me stuff will go here**
-            </p>
-
+            <div className="bg-black/40 p-8 rounded-lg mx-auto max-w-3xl backdrop-blur-xs">
+              <p className="mt-4 max-w-lg text-white sm:text-base/relaxed">
+                At Hernandez Construction, we believe that a home isn’t just a
+                structure—it’s the heart of your family’s story. That’s why we
+                put care, craftsmanship, and a personal touch into every project
+                we take on. Whether you’re looking to build your dream home from
+                the ground up, add space for a growing family, or bring new life
+                to an existing structure, we’re here to make it happen. We
+                specialize in: 🏡 New Home Construction – From cozy cottages to
+                spacious forever homes, we build houses designed to fit your
+                lifestyle, needs, and budget. 🏗 Home Additions & Expansions –
+                Need more room? Whether it’s an extra bedroom, a sunroom, or a
+                second story, we seamlessly blend new spaces into your existing
+                home. 🔨 Custom Projects & Renovations – Your home should grow
+                with you. We handle everything from garage conversions to
+                complete remodels, always with attention to detail and quality.
+                With years of experience, a hardworking team, and a commitment
+                to honesty and integrity, we’re more than just builders—we’re
+                neighbors, problem solvers, and passionate craftsmen. Let’s
+                build something special together. ✨ Your vision. Our expertise.
+                A home built with heart. ✨
+              </p>
+            </div>
             <div className="mt-8 flex flex-wrap gap-4 text-center">
               <a
                 onClick={() => {

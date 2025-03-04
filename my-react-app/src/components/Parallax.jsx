@@ -17,12 +17,10 @@ const Parallax = () => {
   const containerRef = useRef(null);
   const textBoxRef = useRef(null);
 
-  // Function to handle smooth scroll to text box
+
   const scrollToTextBox = () => {
-    
     const containerHeight = containerRef.current.offsetHeight;
-    const scrollPosition =
-      containerRef.current.offsetTop + containerHeight * 1;
+    const scrollPosition = containerRef.current.offsetTop + containerHeight * 1;
 
     // Smooth scroll to that position
     window.scrollTo({
@@ -35,7 +33,7 @@ const Parallax = () => {
     <div
       ref={containerRef}
       id="whyChooseUs"
-      className="w-full relative bg-gradient-to-b from-black to-zinc-950" // Subtle gradient background
+      className="w-full relative bg-gradient-to-b from-black to-zinc-950" 
       style={{
         height: `${SECTION_HEIGHT}vh`,
       }}
@@ -44,12 +42,12 @@ const Parallax = () => {
       <CenterImage containerRef={containerRef} />
       <AdditionalImages containerRef={containerRef} />
       <FillerText containerRef={containerRef} ref={textBoxRef} />
-      <ParticleOverlay /> {/* Added particle effect */}
+      <ParticleOverlay /> 
     </div>
   );
 };
 
-// Pulsating Down Arrow Button Component
+// Down Arrow Button
 const ScrollDownButton = ({ onClick }) => {
   return (
     <motion.button
@@ -91,7 +89,7 @@ const ScrollDownButton = ({ onClick }) => {
   );
 };
 
-// Decorative particle overlay for added energy
+
 const ParticleOverlay = () => {
   return (
     <div className="fixed inset-0 pointer-events-none opacity-30">
@@ -127,7 +125,7 @@ const CenterImage = ({ containerRef }) => {
     offset: ["start start", "end start"],
   });
 
-  // Modified timing to make room for text visibility
+  
   const opacity = useTransform(
     scrollYProgress,
     [0, 0.15, 0.55, 0.65],
@@ -165,7 +163,7 @@ const CenterImage = ({ containerRef }) => {
           boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
         }}
       >
-        {/* Glare effect */}
+      
         <motion.div
           className="absolute inset-0 bg-gradient-to-br from-white to-transparent opacity-0"
           animate={{
@@ -189,14 +187,13 @@ const AdditionalImages = ({ containerRef }) => {
     offset: ["start start", "end start"],
   });
 
-  
   const opacity = useTransform(
     scrollYProgress,
     [0.3, 0.4, 0.65, 0.75],
     [0, 1, 1, 0]
   );
 
-  // staggered entrances with different timings for 4 images
+ 
   const yImage1 = useTransform(
     scrollYProgress,
     [0.3, 0.4, 0.65, 0.75],
@@ -264,7 +261,6 @@ const AdditionalImages = ({ containerRef }) => {
 
   return (
     <div className="sticky top-0 w-full h-screen flex items-center justify-center">
-      
       <motion.div
         className="absolute w-64 h-64 top-24 md:right-24"
         style={{
@@ -292,7 +288,6 @@ const AdditionalImages = ({ containerRef }) => {
         </div>
       </motion.div>
 
-     
       <motion.div
         className="absolute w-64 h-64 top-24 md:left-24"
         style={{
@@ -320,7 +315,6 @@ const AdditionalImages = ({ containerRef }) => {
         </div>
       </motion.div>
 
-     
       <motion.div
         className="absolute w-64 h-64 bottom-32 left-1/4"
         style={{
@@ -348,7 +342,6 @@ const AdditionalImages = ({ containerRef }) => {
         </div>
       </motion.div>
 
-     
       <motion.div
         className="absolute w-64 h-64 bottom-32 right-1/4"
         style={{
@@ -362,7 +355,7 @@ const AdditionalImages = ({ containerRef }) => {
         <div
           className="w-full h-full rounded-lg shadow-lg overflow-hidden"
           style={{
-            backgroundImage: `url("${interior}")`, 
+            backgroundImage: `url("${interior}")`,
             backgroundPosition: "center",
             backgroundSize: "cover",
             boxShadow: "0 20px 30px -10px rgba(0, 0, 0, 0.7)",
@@ -379,24 +372,22 @@ const AdditionalImages = ({ containerRef }) => {
   );
 };
 
-
 const FillerText = React.forwardRef(({ containerRef }, ref) => {
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
   });
 
- 
   const opacity = useTransform(scrollYProgress, [0.6, 0.75, 1.0], [0, 1, 1]);
   const y = useTransform(scrollYProgress, [0.6, 0.75], [100, 0]);
   const scale = useTransform(scrollYProgress, [0.6, 0.75], [0.8, 1]);
 
-  // Text elements fly in staggered 
+ 
   const titleY = useTransform(scrollYProgress, [0.6, 0.7], [50, 0]);
   const descY = useTransform(scrollYProgress, [0.65, 0.75], [50, 0]);
   const ctaY = useTransform(scrollYProgress, [0.7, 0.8], [50, 0]);
 
-  // Title opacity animation
+  
   const titleOpacity = useTransform(scrollYProgress, [0.6, 0.7], [0, 1]);
   const descOpacity = useTransform(scrollYProgress, [0.65, 0.75], [0, 1]);
   const ctaOpacity = useTransform(scrollYProgress, [0.7, 0.8], [0, 1]);
@@ -427,31 +418,54 @@ const FillerText = React.forwardRef(({ containerRef }, ref) => {
           Why Choose Us?
         </motion.h2>
 
-        <motion.p
-          className="text-xl text-gray-200 mb-6 pb-6"
+        <motion.div
+          className="text-base text-gray-200 space-y-4"
           style={{ y: descY, opacity: descOpacity }}
         >
-          Building your dream home or next big project is a huge
-          investment—trust the experts who bring quality, reliability, and
-          craftsmanship to every build. Our team is committed to delivering
-          top-tier construction with precision and care, ensuring your vision
-          becomes a reality.
-          <br />
-          <br />✅ <span className="font-semibold">Unmatched Quality</span> – We
-          use the best materials and expert craftsmanship to create lasting
-          structures.
-          <br />✅{" "}
-          <span className="font-semibold">Reliability You Can Count On</span> –
-          On-time, on-budget, and built to last.
-          <br />✅ <span className="font-semibold">
-            Tailored to Your Needs
-          </span>{" "}
-          – Every project is customized to fit your style, needs, and goals.
-          <br />✅{" "}
-          <span className="font-semibold">Commitment to Excellence</span> – We
-          take pride in our work, guaranteeing satisfaction every step of the
-          way.
-        </motion.p>
+          <p>
+            Building your dream home or next big project is a huge
+            investment—trust the experts who bring quality, reliability, and
+            craftsmanship to every build. Our team is committed to delivering
+            top-tier construction with precision and care, ensuring your vision
+            becomes a reality.
+          </p>
+
+          <div className="flex items-start">
+            <span className="mr-3">✅</span>
+            <div>
+              <span className="font-semibold">Unmatched Quality</span> – We use
+              the best materials and expert craftsmanship to create lasting
+              structures.
+            </div>
+          </div>
+
+          <div className="flex items-start">
+            <span className="mr-3">✅</span>
+            <div>
+              <span className="font-semibold">
+                Reliability You Can Count On
+              </span>{" "}
+              – On-time, on-budget, and built to last.
+            </div>
+          </div>
+
+          <div className="flex items-start">
+            <span className="mr-3">✅</span>
+            <div>
+              <span className="font-semibold">Tailored to Your Needs</span> –
+              Every project is customized to fit your style, needs, and goals.
+            </div>
+          </div>
+
+          <div className="flex items-start">
+            <span className="mr-3">✅</span>
+            <div>
+              <span className="font-semibold">Commitment to Excellence</span> –
+              We take pride in our work, guaranteeing satisfaction every step of
+              the way.
+            </div>
+          </div>
+        </motion.div>
 
         <motion.div style={{ y: ctaY, opacity: ctaOpacity }}>
           <motion.button
