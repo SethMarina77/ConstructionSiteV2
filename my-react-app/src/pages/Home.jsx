@@ -6,6 +6,7 @@ import thirdVideo from "../construction pictures/dScroll.mp4";
 import HomeMovingDisplay from "../components/HomeMovingDisplay";
 import Parallax from "../components/parallax";
 import ReadMore from "../components/ReadMore";
+import Carousel from "../components/Carousel";
 
 const Home = () => {
   const [currentVideo, setCurrentVideo] = useState(firstVideo);
@@ -68,8 +69,9 @@ const Home = () => {
       <section className="bg-black h-screen" id="whatweDo">
         <HomeMovingDisplay />
       </section>
-      <section id="readMore">
+      <section id="readMore" className="h-screen">
         <ReadMore />
+        <Carousel />
       </section>
       <section id="whyChooseUs">
         <Parallax />

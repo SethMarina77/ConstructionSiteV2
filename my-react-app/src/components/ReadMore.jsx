@@ -2,7 +2,7 @@ import React from 'react'
 
 const ReadMore = () => {
   return (
-    <div className='h-screen bg-blue-500'>ReadMore</div>
+    <div className='bg-blue-500 h-1/2'>ReadMore</div>
   )
 }
 
