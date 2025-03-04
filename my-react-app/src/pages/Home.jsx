@@ -69,7 +69,10 @@ const Home = () => {
       <section className="bg-black h-screen" id="whatweDo">
         <HomeMovingDisplay />
       </section>
-      <section id="readMore" className="h-screen bg-black">
+      <section
+        id="readMore"
+        className="h-screen bg-gradient-to-b from-zinc-950 to-black"
+      >
         <ReadMore />
         <Carousel />
       </section>

@@ -20,7 +20,7 @@ const CarouselItem = ({ image }) => {
       <img
         src={image}
         alt={`Car ${image}`}
-        className="w-[600px] h-[400px] object-cover rounded-lg"
+        className="w-[400px] h-[250px] object-cover rounded-lg"
       />
     </motion.div>
   );
