@@ -47,7 +47,7 @@ const HomeMovingDisplay = () => {
             <div className="mt-8 flex flex-wrap gap-4 text-center">
               <a
                 onClick={() => {
-                  document.getElementById("whyChooseUs").scrollIntoView({
+                  document.getElementById("readMore").scrollIntoView({
                     behavior: "smooth",
                   });
                 }}
