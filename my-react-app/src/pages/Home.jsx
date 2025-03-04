@@ -69,7 +69,7 @@ const Home = () => {
       <section className="bg-black h-screen" id="whatweDo">
         <HomeMovingDisplay />
       </section>
-      <section id="readMore" className="h-screen">
+      <section id="readMore" className="h-screen bg-black">
         <ReadMore />
         <Carousel />
       </section>

@@ -40,6 +40,17 @@ const Header = () => {
 
         <button
           onClick={() => {
+            document.getElementById("readMore").scrollIntoView({
+              behavior: "smooth",
+            });
+          }}
+        >
+          <Tab setPosition={setPosition}>
+            <p>our mission</p>
+          </Tab>
+        </button>
+        <button
+          onClick={() => {
             document.getElementById("whyChooseUs").scrollIntoView({
               behavior: "smooth",
             });
@@ -50,9 +61,6 @@ const Header = () => {
           </Tab>
         </button>
 
-        <Tab setPosition={setPosition}>
-          <p>our mission</p>
-        </Tab>
         <NavLink to="/about">
           <Tab setPosition={setPosition}>About</Tab>
         </NavLink>
