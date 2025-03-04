@@ -20,7 +20,7 @@ const CarouselItem = ({ image }) => {
       <img
         src={image}
         alt={`Car ${image}`}
-        className="w-[400px] h-[250px] object-cover rounded-lg"
+        className="w-[600px] h-[400px] object-cover rounded-sm"
       />
     </motion.div>
   );
@@ -42,7 +42,7 @@ const Carousel = () => {
   ];
 
   return (
-    <div className="overflow-hidden w-full relative mt-36">
+    <div className="overflow-hidden w-full relative mt-20">
       <motion.div
         className="flex"
         initial={{ x: 0 }}
